@@ -22,7 +22,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view("Products.create");
+        $route = "store";
+        $method = "POST";
+
+        return view("Products.create", compact("route","method"));
     }
 
     /**
@@ -54,9 +57,13 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        //
+        $route = "update";
+        $method = "PUT";
+        $product = Product::where("id",$id)->get();
+        // dd($product);
+        return view("Products.create", compact("product","method","route"));
     }
 
     /**
@@ -64,7 +71,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        // dd("dones");
     }
 
     /**

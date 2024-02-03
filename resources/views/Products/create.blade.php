@@ -10,8 +10,9 @@
 </head>
 <body>
     <div class="container mt-2">
-        <form action="{{route("store")}}" method="POST">
+        <form action="{{$route}}" method="POST">
             @csrf
+            @method($method)
             <div>
                 <label for="" class="my-2" >ProductName : </label>
                 <input class="form-control" type="text" name="productName">

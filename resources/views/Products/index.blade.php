@@ -14,12 +14,14 @@
         
         <div class="row">
             @foreach ($products as $product)
-                <div class="col-4">
-                    <div class="card border-2 p-4">
-                        <label for="">Product Name: {{ $product->product_name }}</label>
+                <div class="col-4 mb-2">
+                    <div class="card border-2 p-3 mb-2">
+                        <label for="">Product Name: {{ $product->productName }}</label>
                         <label for="">Price: {{ $product->price }}</label>
                         <label for="">Detail: {{ $product->detail }}</label>
                     </div>
+                    <a href="{{route('edit', $product->id)}}" class="btn btn-warning">Edit</a>
+                    <a href="" class="btn btn-danger">Delete</a>
                 </div>
             @endforeach
         </div>
