@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,3 +29,5 @@ Route::post('/products/store', [ProductController::class, "store"])->name("store
 
 Route::get('/products/{id}/edit', [ProductController::class, "edit"])->name("edit");
 Route::put('products/{id}/update', [ProductController::class, "update"])->name("update");
+
+Route::get('products/{id}/destroy', [ProductController::class, "destroy"])->name("destroy");

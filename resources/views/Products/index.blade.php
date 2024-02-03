@@ -21,7 +21,7 @@
                         <label for="">Detail: {{ $product->detail }}</label>
                     </div>
                     <a href="{{route('edit', $product->id)}}" class="btn btn-warning">Edit</a>
-                    <a href="" class="btn btn-danger">Delete</a>
+                    <a href="{{route('destroy', $product->id)}}" class="btn btn-danger">Delete</a>
                 </div>
             @endforeach
         </div>

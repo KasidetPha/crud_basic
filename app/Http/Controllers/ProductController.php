@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Backtrace\Arguments\ReducedArgument\ReducedArgument;
 
 class ProductController extends Controller
 {
@@ -13,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::orderBy('id', 'desc')->get();
         return view("Products.index", compact("products"));
     }
 
@@ -22,10 +23,11 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $product = new Product;
         $route = "store";
         $method = "POST";
 
-        return view("Products.create", compact("route","method"));
+        return view("Products.create", compact("route","method", "product"));
     }
 
     /**
@@ -61,7 +63,7 @@ class ProductController extends Controller
     {
         $route = "update";
         $method = "PUT";
-        $product = Product::where("id",$id)->get();
+        $product = Product::findOrFail($id);
         // dd($product);
         return view("Products.create", compact("product","method","route"));
     }
@@ -69,16 +71,26 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update($id, Request $request)
     {
-        // dd("dones");
+        $product = Product::findOrFail($id);
+        $productUpdate = [
+            "productName" => $request->productName,
+            "price" => $request->price,
+            "detail" => $request->detail,
+        ];
+        $product->update($productUpdate);
+        return redirect()->route('index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        // dd($product);
+        $product->delete();
+        return redirect()->route('index');
     }
 }

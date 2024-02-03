@@ -15,17 +15,18 @@
             @method($method)
             <div>
                 <label for="" class="my-2" >ProductName : </label>
-                <input class="form-control" type="text" name="productName">
+                <input class="form-control" type="text" name="productName" value="{{$product->productName}}">
             </div>
             <div>
                 <label for="" class="my-2" >Price : </label>
-                <input class="form-control" type="text" name="price">
+                <input class="form-control" type="text" name="price" value="{{$product->price}}">
             </div>
             <div>
                 <label for="" class="my-2" >Detail : </label>
-                <input class="form-control mb-2" type="text" name="detail">
+                <input class="form-control mb-2" type="text" name="detail" value="{{$product->detail}}">
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
+            <a href="{{ route("index")}}" class="btn btn-secondary">Back</a>
         </form>
     </div>
 </body>
